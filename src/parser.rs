@@ -1,13 +1,5 @@
 
-#[derive(Debug)]
-struct Command{
-    command_type: String,
-    command_args: Option<String>
-}
-
 pub fn parse(cmd: String) -> Vec<String>{
-    println!("parsing '{}' started", cmd);
-
     let mut parsed_vector: Vec<String> = Vec::new(); //contains parsed words
     let mut word: String = String::new();
     for i in 0..cmd.len(){
