@@ -2,7 +2,7 @@ use std::io;
 use std::io::Write;
 
 pub mod parser;
-
+pub mod executor;
 fn main() {
 
     println!("welcome to my unix shell");
@@ -16,12 +16,12 @@ fn main() {
     
     loop{
         command.clear();
-        print!("[{}]$   ",pre);
+        print!("[{}]$ ",pre);
         let _ = io::stdout().flush();
         let _ = io::stdin().read_line(&mut command);
         if command.trim() == "exit" {break;}
         let _parsed_vector = parser::parse(command.trim().to_string());
         //.trim() returns a immutable reference &str while .to_stirng allocates a new string on the heap and no ownership is moved
-        println!("{:?}" , _parsed_vector)
+        executor::execute(&_parsed_vector);
     }
 }
